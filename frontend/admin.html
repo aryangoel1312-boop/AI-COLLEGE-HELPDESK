@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Login | College Help Desk</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background: #f4f7fb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #172033;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 440px;
+            padding: 24px;
+        }
+
+        .login-card {
+            background: #ffffff;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 18px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 18px 45px rgba(20, 45, 80, 0.10);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 34px;
+        }
+
+        .brand-mark {
+            width: 44px;
+            height: 44px;
+
+            border-radius: 10px;
+
+            background: #173a70;
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .brand-text h1 {
+            font-size: 18px;
+            color: #173a70;
+            font-weight: 700;
+        }
+
+        .brand-text p {
+            margin-top: 3px;
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .heading {
+            margin-bottom: 26px;
+        }
+
+        .heading h2 {
+            font-size: 27px;
+            color: #172033;
+            margin-bottom: 8px;
+        }
+
+        .heading p {
+            color: #718096;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            color: #344054;
+        }
+
+        .form-group input {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #d5dce7;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            color: #172033;
+
+            background: #ffffff;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #315d96;
+
+            box-shadow:
+                0 0 0 3px rgba(49, 93, 150, 0.10);
+        }
+
+        .login-button {
+            width: 100%;
+
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 14px;
+
+            background: #173a70;
+
+            color: white;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                transform 0.1s ease;
+        }
+
+        .login-button:hover {
+            background: #12315e;
+        }
+
+        .login-button:active {
+            transform: translateY(1px);
+        }
+
+        .login-button:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        .message {
+            display: none;
+
+            margin-top: 16px;
+
+            padding: 11px 13px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        .message.error {
+            display: block;
+
+            background: #fff1f1;
+
+            border: 1px solid #ffd4d4;
+
+            color: #b42318;
+        }
+
+        .message.success {
+            display: block;
+
+            background: #effaf3;
+
+            border: 1px solid #ccebd7;
+
+            color: #18794e;
+        }
+
+        .back-link {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 24px;
+
+            font-size: 13px;
+
+            color: #667085;
+
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #173a70;
+        }
+
+        .security-note {
+            margin-top: 26px;
+
+            padding-top: 18px;
+
+            border-top: 1px solid #edf0f5;
+
+            text-align: center;
+
+            font-size: 11px;
+
+            color: #98a2b3;
+
+            line-height: 1.5;
+        }
+
+        @media (max-width: 480px) {
+
+            .login-wrapper {
+                padding: 16px;
+            }
+
+            .login-card {
+                padding: 28px 22px;
+            }
+
+            .heading h2 {
+                font-size: 24px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <main class="login-wrapper">
+
+        <section class="login-card">
+
+            <div class="brand">
+
+                <div class="brand-mark">
+                    CH
+                </div>
+
+                <div class="brand-text">
+
+                    <h1>
+                        College Help Desk
+                    </h1>
+
+                    <p>
+                        Administration Portal
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="heading">
+
+                <h2>
+                    Admin sign in
+                </h2>
+
+                <p>
+                    Sign in to manage support requests,
+                    college documents, and help desk activity.
+                </p>
+
+            </div>
+
+
+            <form id="adminLoginForm">
+
+                <div class="form-group">
+
+                    <label for="adminEmail">
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        placeholder="admin@college.edu"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="adminPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton"
+                >
+                    Sign in to dashboard
+                </button>
+
+            </form>
+
+
+            <div
+                id="loginMessage"
+                class="message"
+            ></div>
+
+
+            <a
+                href="logic.html"
+                class="back-link"
+            >
+                ← Back to student portal
+            </a>
+
+
+            <div class="security-note">
+                Administrative access is restricted to
+                authorized college staff.
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        const API_BASE_URL =
+            "http://127.0.0.1:8000";
+
+
+        const loginForm =
+            document.getElementById(
+                "adminLoginForm"
+            );
+
+        const emailInput =
+            document.getElementById(
+                "adminEmail"
+            );
+
+        const passwordInput =
+            document.getElementById(
+                "adminPassword"
+            );
+
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
+
+        const loginMessage =
+            document.getElementById(
+                "loginMessage"
+            );
+
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            loginMessage.textContent = text;
+
+            loginMessage.className =
+                "message " + type;
+
+        }
+
+
+        loginForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    emailInput.value.trim();
+
+                const password =
+                    passwordInput.value;
+
+
+                if (!email || !password) {
+
+                    showMessage(
+                        "Please enter your email and password.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                loginButton.disabled = true;
+
+                loginButton.textContent =
+                    "Signing in...";
+
+
+                try {
+
+                    const params =
+                        new URLSearchParams();
+
+                    params.append(
+                        "email",
+                        email
+                    );
+
+                    params.append(
+                        "password",
+                        password
+                    );
+
+
+                    const response =
+                        await fetch(
+                            API_BASE_URL +
+                            "/admin/auth/login?" +
+                            params.toString(),
+                            {
+                                method: "POST"
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data.detail ||
+                            "Unable to sign in."
+                        );
+
+                    }
+
+
+                    localStorage.setItem(
+                        "admin_access_token",
+                        data.access_token
+                    );
+
+
+                    localStorage.setItem(
+                        "admin",
+                        JSON.stringify(
+                            data.admin
+                        )
+                    );
+
+
+                    showMessage(
+                        "Login successful. Opening dashboard...",
+                        "success"
+                    );
+
+
+                    setTimeout(
+                        function() {
+
+                            window.location.href =
+                                "admin-dashboard.html";
+
+                        },
+                        500
+                    );
+
+                }
+
+                catch (error) {
+
+                    console.error(error);
+
+                    showMessage(
+                        error.message ||
+                        "Unable to sign in. Please try again.",
+                        "error"
+                    );
+
+                }
+
+                finally {
+
+                    loginButton.disabled = false;
+
+                    loginButton.textContent =
+                        "Sign in to dashboard";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

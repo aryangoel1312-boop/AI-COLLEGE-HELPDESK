@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="AI College Help Desk - Student and Admin Portal"
+    >
+
+    <title>AI College Help Desk</title>
+
+    <link
+        rel="icon"
+        href="favicon.svg"
+        type="image/svg+xml"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+        }
+
+        body {
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fafc 0%,
+                    #eef2ff 48%,
+                    #f8fafc 100%
+                );
+
+            color: #111827;
+        }
+
+        .role-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .role-header {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            background: rgba(255, 255, 255, 0.88);
+            border-bottom: 1px solid #e5e7eb;
+            backdrop-filter: blur(12px);
+        }
+
+        .role-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #111827;
+        }
+
+        .role-brand-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #111827;
+            color: white;
+
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+        }
+
+        .role-brand-name {
+            font-size: 16px;
+            font-weight: 750;
+            letter-spacing: -0.02em;
+        }
+
+        .role-header-label {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .role-main {
+            flex: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 72px 24px 80px;
+        }
+
+        .role-wrapper {
+            width: min(1040px, 100%);
+        }
+
+        .role-intro {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 48px;
+        }
+
+        .role-eyebrow {
+            margin: 0 0 14px;
+
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+
+            color: #4f46e5;
+        }
+
+        .role-title {
+            margin: 0;
+
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 1.02;
+            letter-spacing: -0.045em;
+            font-weight: 800;
+
+            color: #111827;
+        }
+
+        .role-title span {
+            color: #4f46e5;
+        }
+
+        .role-description {
+            margin: 22px auto 0;
+
+            max-width: 620px;
+
+            font-size: 17px;
+            line-height: 1.7;
+
+            color: #6b7280;
+        }
+
+        .role-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .role-card {
+            position: relative;
+
+            padding: 34px;
+
+            background: rgba(255, 255, 255, 0.94);
+
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+
+            text-decoration: none;
+            color: inherit;
+
+            box-shadow:
+                0 10px 30px rgba(15, 23, 42, 0.05);
+
+            transition:
+                transform 180ms ease,
+                box-shadow 180ms ease,
+                border-color 180ms ease;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+
+            border-color: #c7d2fe;
+
+            box-shadow:
+                0 18px 42px rgba(15, 23, 42, 0.10);
+        }
+
+        .role-card-icon {
+            width: 54px;
+            height: 54px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            margin-bottom: 25px;
+
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .student-icon {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        .admin-icon {
+            background: #f3f4f6;
+            color: #111827;
+        }
+
+        .role-card-label {
+            margin: 0 0 7px;
+
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+
+            color: #9ca3af;
+        }
+
+        .role-card h2 {
+            margin: 0;
+
+            font-size: 27px;
+            letter-spacing: -0.025em;
+        }
+
+        .role-card p {
+            margin: 13px 0 26px;
+
+            min-height: 50px;
+
+            font-size: 15px;
+            line-height: 1.65;
+
+            color: #6b7280;
+        }
+
+        .role-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            margin-bottom: 30px;
+        }
+
+        .role-feature {
+            padding: 7px 10px;
+
+            border-radius: 8px;
+
+            background: #f9fafb;
+            border: 1px solid #edf0f3;
+
+            font-size: 12px;
+            font-weight: 650;
+
+            color: #4b5563;
+        }
+
+        .role-button {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 13px 15px;
+
+            border: 0;
+            border-radius: 10px;
+
+            background: #111827;
+            color: white;
+
+            font-size: 14px;
+            font-weight: 750;
+        }
+
+        .student-card .role-button {
+            background: #4f46e5;
+        }
+
+        .role-arrow {
+            font-size: 18px;
+            transition: transform 180ms ease;
+        }
+
+        .role-card:hover .role-arrow {
+            transform: translateX(4px);
+        }
+
+        .role-footer {
+            padding: 22px 24px;
+
+            text-align: center;
+
+            border-top: 1px solid #e5e7eb;
+
+            background: rgba(255, 255, 255, 0.75);
+        }
+
+        .role-footer-main {
+            margin: 0;
+
+            font-size: 12px;
+            font-weight: 650;
+
+            color: #6b7280;
+        }
+
+        .role-footer-sub {
+            margin: 6px 0 0;
+
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 760px) {
+
+            .role-header {
+                padding: 0 20px;
+            }
+
+            .role-header-label {
+                display: none;
+            }
+
+            .role-main {
+                padding: 50px 20px 60px;
+            }
+
+            .role-intro {
+                margin-bottom: 32px;
+            }
+
+            .role-title {
+                font-size: 42px;
+            }
+
+            .role-description {
+                font-size: 15px;
+            }
+
+            .role-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .role-card {
+                padding: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="role-page">
+
+        <!-- HEADER -->
+        <header class="role-header">
+
+            <a
+                href="index.html"
+                class="role-brand"
+            >
+
+                <span class="role-brand-mark">
+                    CH
+                </span>
+
+                <span class="role-brand-name">
+                    AI College Help Desk
+                </span>
+
+            </a>
+
+            <span class="role-header-label">
+                Intelligent Campus Support System
+            </span>
+
+        </header>
+
+
+        <!-- MAIN -->
+        <main class="role-main">
+
+            <div class="role-wrapper">
+
+                <section class="role-intro">
+
+                    <p class="role-eyebrow">
+                        WELCOME TO YOUR CAMPUS SUPPORT HUB
+                    </p>
+
+                    <h1 class="role-title">
+                        How can we
+                        <span>help you?</span>
+                    </h1>
+
+                    <p class="role-description">
+                        Choose your portal to access AI-powered
+                        college information, support requests,
+                        knowledge management, and analytics.
+                    </p>
+
+                </section>
+
+
+                <!-- ROLE CARDS -->
+                <section class="role-cards">
+
+                    <!-- STUDENT -->
+                    <a
+                        href="login.html"
+                        class="role-card student-card"
+                    >
+
+                        <div class="role-card-icon student-icon">
+                            ST
+                        </div>
+
+                        <p class="role-card-label">
+                            STUDENT PORTAL
+                        </p>
+
+                        <h2>
+                            I'm a Student
+                        </h2>
+
+                        <p>
+                            Ask questions, find information from
+                            official college documents, create
+                            support requests, and track their status.
+                        </p>
+
+                        <div class="role-features">
+
+                            <span class="role-feature">
+                                AI Assistant
+                            </span>
+
+                            <span class="role-feature">
+                                College Information
+                            </span>
+
+                            <span class="role-feature">
+                                Support Requests
+                            </span>
+
+                            <span class="role-feature">
+                                Request Tracking
+                            </span>
+
+                        </div>
+
+                        <div class="role-button">
+
+                            <span>
+                                Continue as Student
+                            </span>
+
+                            <span class="role-arrow">
+                                →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- ADMIN -->
+                    <a
+                        href="admin.html"
+                        class="role-card"
+                    >
+
+                        <div class="role-card-icon admin-icon">
+                            AD
+                        </div>
+
+                        <p class="role-card-label">
+                            ADMINISTRATION PORTAL
+                        </p>
+
+                        <h2>
+                            I'm an Admin
+                        </h2>
+
+                        <p>
+                            Manage support tickets, update request
+                            status, maintain the college knowledge
+                            base, and monitor help desk analytics.
+                        </p>
+
+                        <div class="role-features">
+
+                            <span class="role-feature">
+                                Ticket Management
+                            </span>
+
+                            <span class="role-feature">
+                                Knowledge Base
+                            </span>
+
+                            <span class="role-feature">
+                                Smart Routing
+                            </span>
+
+                            <span class="role-feature">
+                                Analytics
+                            </span>
+
+                        </div>
+
+                        <div class="role-button">
+
+                            <span>
+                                Continue as Admin
+                            </span>
+
+                            <span class="role-arrow">
+                                →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </section>
+
+            </div>
+
+        </main>
+
+
+        <!-- FOOTER -->
+        <footer class="role-footer">
+
+            <p class="role-footer-main">
+                AI College Help Desk
+                &nbsp;•&nbsp;
+                AI-powered campus support
+            </p>
+
+            <p class="role-footer-sub">
+                © 2026 College Help Desk
+            </p>
+
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
