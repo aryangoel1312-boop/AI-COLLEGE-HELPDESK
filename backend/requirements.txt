@@ -6,3 +6,7 @@ pydantic-settings
 python-dotenv
 httpx
 pandas
+bcrypt
+PyJWT
+python-multipart
+pypdf
